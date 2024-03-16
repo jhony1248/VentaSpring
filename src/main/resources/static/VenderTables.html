@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Tables</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/StylesNew.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Components</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Utilities</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="utilities-color.html">Colors</a>
+                        <a class="collapse-item" href="utilities-border.html">Borders</a>
+                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Addons
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Pages</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="register.html">Register</a>
+                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Charts</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar por..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Menu del usuario o Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
+                            <!-- submenu del usuario - Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Salir
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Realizar Venta</h1>
+
+                    <div class="contenedorSuperior">
+                        <div class="div1">
+                            <div class="divInter1">
+                                <form class="mi-formulario">
+                                    <p>&nbsp;Datos del cliente:</p>
+                                    <div class="Izquierda-container">
+                                        &nbsp;&nbsp;
+                                        <label>Nombre:</label>
+                                        <input type="text" id="nombreCli" class="input-General input-Mayor">
+                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi" onclick="abrirModalCli()">
+                                            <img src="https://img.icons8.com/?size=48&id=6YJn2IiSEl3F&format=png" width="24">
+                                        </button>
+                                    </div>
+                                    <div class="Derecha-container">
+                                        <label>Cédula:</label>
+                                        <input type="text" id="cedulaCli" class="input-General input-Menor2">
+                                    </div>                           
+                                </form>
+                            </div>
+                            <div class="divInter1">
+                                <form class="mi-formulario">
+                                    <p>&nbsp;Producto:</p>
+                                    <div class="Izquierda-container" >
+                                        &nbsp;&nbsp;
+                                        <label>Producto:</label>
+                                        <input type="text" id="nombrePro" class="input-General input-Mayor2">
+                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnProducto" onclick="abrirModalPro(), calcularSuma()">
+                                            <img src="https://img.icons8.com/?size=48&id=ceXhtoEtusjo&format=png" width="24">
+                                        </button>
+                                    </div>
+                                    <div class="Derecha-container">
+                                        <label>Stock:</label>
+                                        <input type="text" id="stock" class="input-Menor input-General">
+                                    </div>      
+                                    <div class="Izquierda-container">
+                                        &nbsp;&nbsp;
+                                        <label>Contenido Neto:</label>
+                                        <input type="text" id="Cont_Net" class="input-General">                                     
+                                    </div>
+                                    <div class="Derecha-container">
+                                        <label>Precio $/:</label>
+                                        <input type="text" id="precioU" oninput="calcularSuma()" 
+                                            class="input-Menor input-General">
+                                    </div>                     
+                                </form>
+                            </div>
+                            <div class="divInter1">
+                                <form class="mi-formulario">
+                                    <p>&nbsp;Datos del Vendedor:</p>
+                                    <div class="Izquierda-container">
+                                        &nbsp;&nbsp;
+                                        <label>Vendedor:</label>
+                                        <input type="text" id="nombreVende" class="input-General input-Mayor2">
+                                    </div>
+                                    <div class="Derecha-container">
+                                        <label>Usuario:</label>
+                                        <input type="text" id="UsuarioVende" class="input-General">
+                                    </div>                      
+                                </form>
+                            </div>
+                        </div>
+                        <div class="div2">
+                            <div class="divInter2">
+                                <form class="mi-formulario">                                                     
+                                    <div class="Center-container">
+                                        <label>FECHA:</label>
+                                        <input type="text" id="Fecha" class="input-General input-Menor2">
+                                    </div>                           
+                                </form>
+                            </div>
+                            <div class="divInter2">
+                                <form class="mi-formulario">                                                     
+                                    <div class="Center-container top-Margen">
+                                        <label>VENTA:</label>
+                                        <input type="text" id="Num_venta" class="input-General input-Menor2">
+                                    </div>                           
+                                </form>
+                            </div>
+                        </div>
+                        <div class="div3">
+                            <div class="divInter3">
+                                <form class="FormBTn1">
+                                    <p>&nbsp;Opciones:</p>                        
+                                    <button type="button" class="btn-centrado" id="BtnNuevaFac">
+                                        <img src="https://img.icons8.com/?size=80&id=C33Ag_PnSi9G&format=png" width="40">
+                                        <span class="d-block mx-auto">Nuevo</span>
+                                    </button>                                                                       
+                                    <button type="button" class="btn-centrado" id="BtnGuardar" onclick="registrarFactura()">
+                                        <img src="https://img.icons8.com/?size=24&id=13279&format=png" width="40">
+                                        <span class="d-block mx-auto">Guardar</span>
+                                    </button>                                                                
+                                    <button type="button" class="btn-centrado" id="BtnCancelar">
+                                        <img src="https://img.icons8.com/?size=48&id=Zl30b7OBIEIH&format=png" width="40">                                            
+                                        <span class="d-block mx-auto">Cancelar</span>
+                                    </button>    
+                                    <button type="button" class="btn-centrado" id="BtnImprimir" onclick="generarFactura()">
+                                        <img src="https://img.icons8.com/stickers/2x/print.png" width="40">                                           
+                                        <span class="d-block mx-auto">Imprimir</span>
+                                    </button>                                                                                                 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedorCentroSuperior">
+                        <div class="div5">
+                            <div class="Derecha-centrar">
+                                <label>Cantidad:</label>
+                                <input type="text" id="Cantidad" oninput="calcularSuma()" 
+                                    class="input-General input-Menor3 mg4"> 
+                                <label>Total:</label>
+                                <input type="text" id="totalSuma" class="input-General input-Menor3 mg4" readonly>                                    
+                            </div>
+                        </div>
+                        <div class="div6">            
+                            <button type="button" class="btn-Form" id="BtnAgregarFila" onclick="agregarFila()">
+                                <img src="https://img.icons8.com/?size=48&id=dPHtV3gzXZxM&format=png" width="32%">
+                                Agregar
+                            </button>
+                            <button type="button" class="btn-Form" id="BtnLimpiar" onclick="eliminarTabla()">
+                                <img src="https://img.icons8.com/?size=48&id=12850&format=png" width="32%">
+                                Limpiar
+                            </button>    
+                            <button type="button" class="btn-Form" id="BtnEliminarFila" onclick="eliminarFilaSeleccionada()">
+                                <img src="https://img.icons8.com/?size=80&id=102579&format=png" width="32%">
+                                Eliminar
+                            </button>  
+                            <button type="button" class="btn-Form" id="BtnSalir">
+                                <img src="https://img.icons8.com/?size=80&id=115773&format=png" width="32%">
+                                Salir
+                            </button>                                                    
+                        </div>
+                    </div>
+
+                    <div class="contenedorCentroInferior">
+                        <div class="div7">
+                            <div class="table-venta">
+                                <table class="tableV table-borderedVentas" id="TbVenta" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Total</th>
+                                            <th>Stock</th>                                    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                       
+                    </div>
+
+                    <div class="contenedorInferior">
+                        <div class="div8">
+                            <div class="divInterVenta">
+                                <div class="Center-DivP">
+                                    <div>
+                                        <label for="valor_venta" class="label_reducido">VALOR VENTA</label>
+                                        <input type="text" id="valor_venta" class="input_reducido input-General" oninput="calcularTotalPagar()"> 
+                                    </div>
+                                    <div>
+                                        <label for="iva" class="label_reducido">IVA</label>
+                                        <input type="text" id="ivaT" class="input_reducido input-General" oninput="calcularTotalPagar()">
+                                    </div>
+                                    <div>
+                                        <label for="subtotal" class="label_reducido">SUB TOTAL</label>
+                                        <input type="text" id="subtotal" class="input_reducido input-General">
+                                    </div>
+                                    <div>
+                                        <label for="total" class="label_reducido">TOTAL A PAGAR</label>
+                                        <input type="text" id="totalPagar" class="input_reducido input-General" readonly>                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Modal para mostrar la tabla de cliente -->
+    <div class="modal fade" id="tablaModalCli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document"> <!-- Ajusta el tamaño del modal según necesites -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tabla de Clientes</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="TbClientesMod" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombres</th>
+                                    <th>Sexo</th>
+                                    <th>Cedula</th>
+                                    <th>Email</th>
+                                    <th>Telefono</th>
+                                    <th>Direccion</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar la tabla de Productos -->
+    <div class="modal fade" id="tablaModalPro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document"> <!-- Ajusta el tamaño del modal según necesites -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tabla de Productos</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="TbProductosMod" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Contenido Neto</th>
+                                    <th>Descripción</th>
+                                    <th>Stock</th>
+                                    <th>Precio Venta</th>
+                                    <th>Precio Compra</th>                                                                           
+                                    <th>Imagen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <div id="imagenProductoContainer" style="display: none;" class="imagenCentrar">
+                            <img id="imagenProducto" src="" alt="Imagen del Producto" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje para salir o Logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro de que deseas cerrar sesión?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Si continúas, se cerrará tu sesión actual y deberás volver a iniciar sesión la
+                    próxima vez que accedas.
+                    Si estás listo para cerrar sesión, simplemente confírmalo con 'Salir'</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="login.html">Salir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Validación Personalizado -->
+    <div class="modal fade" id="validacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body" id="mensajeValidacionBody">
+                <!-- Aquí se mostrará el mensaje de validación -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                <!-- Puedes agregar más botones según sea necesario -->
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Modal de Validación Personalizado -->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí se mostrará el mensaje de confirmación dinámico -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Biblioteca jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/ventas.js"></script>
+
+</body>
+
+</html>
+
