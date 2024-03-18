@@ -39,19 +39,21 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-shopping-bag"></i> <!-- Icono de bolsa de compras -->
+
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">ModaViva</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - Inicio -->
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-home"></i> <!-- Icono de casa -->
+                    <span>Inicio</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -59,50 +61,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
+                Menú
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -110,34 +69,35 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Registros</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">Pantallas de registro:</h6>
+                        <a class="collapse-item" href="productosTables.html">Productos</a>
+                        <a class="collapse-item" href="RolTables.html">Rol</a>
+                        <a class="collapse-item" href="clientesTables.html">Clientes</a>
+                        <a class="collapse-item" href="usuariosTables.html">Usuarios</a>
+                        <a class="collapse-item" href="proveedorTables.html">Proveedores</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMovement"
+                    aria-expanded="true" aria-controls="collapseMovement">
+                    <i class="fas fa-fw fa-exchange-alt"></i> <!-- Icono de intercambio o movimiento -->
+                    <span>Movimiento</span>
+                </a>
+                <div id="collapseMovement" class="collapse" aria-labelledby="headingMovement"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Operaciones:</h6>
+                        <a class="collapse-item" href="VenderTables.html">Realizar Venta</a>
+                        <a class="collapse-item" href="ComprarTables.html">Realizar Compra</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -246,41 +206,45 @@
                                         &nbsp;&nbsp;
                                         <label>Nombre:</label>
                                         <input type="text" id="nombreCli" class="input-General input-Mayor">
-                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi" onclick="abrirModalProv()">
-                                            <img src="https://img.icons8.com/?size=48&id=6YJn2IiSEl3F&format=png" width="24">
+                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi"
+                                            onclick="abrirModalProv()">
+                                            <img src="https://img.icons8.com/?size=48&id=6YJn2IiSEl3F&format=png"
+                                                width="24">
                                         </button>
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Direccion:</label>
                                         <input type="text" id="cedulaCli" class="input-General input-Menor2">
-                                    </div>                           
+                                    </div>
                                 </form>
                             </div>
                             <div class="divInter1">
                                 <form class="mi-formulario">
                                     <p>&nbsp;Producto:</p>
-                                    <div class="Izquierda-container" >
+                                    <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Producto:</label>
                                         <input type="text" id="nombrePro" class="input-General input-Mayor2">
-                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnProducto" onclick="abrirModalPro(), calcularSuma()">
-                                            <img src="https://img.icons8.com/?size=48&id=ceXhtoEtusjo&format=png" width="24">
+                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnProducto"
+                                            onclick="abrirModalPro(), calcularSuma()">
+                                            <img src="https://img.icons8.com/?size=48&id=ceXhtoEtusjo&format=png"
+                                                width="24">
                                         </button>
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Stock:</label>
                                         <input type="text" id="stock" class="input-Menor input-General">
-                                    </div>      
+                                    </div>
                                     <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Contenido Neto:</label>
-                                        <input type="text" id="Cont_Net" class="input-General">                                     
+                                        <input type="text" id="Cont_Net" class="input-General">
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Precio $/:</label>
-                                        <input type="text" id="precioU" oninput="calcularSuma()" 
+                                        <input type="text" id="precioU" oninput="calcularSuma()"
                                             class="input-Menor input-General">
-                                    </div>                     
+                                    </div>
                                 </form>
                             </div>
                             <div class="divInter1">
@@ -294,48 +258,52 @@
                                     <div class="Derecha-container">
                                         <label>Usuario:</label>
                                         <input type="text" id="UsuarioVende" class="input-General">
-                                    </div>                      
+                                    </div>
                                 </form>
                             </div>
                         </div>
                         <div class="div2">
                             <div class="divInter2">
-                                <form class="mi-formulario">                                                     
+                                <form class="mi-formulario">
                                     <div class="Center-container">
                                         <label>FECHA:</label>
                                         <input type="text" id="Fecha" class="input-General input-Menor2">
-                                    </div>                           
+                                    </div>
                                 </form>
                             </div>
                             <div class="divInter2">
-                                <form class="mi-formulario">                                                     
+                                <form class="mi-formulario">
                                     <div class="Center-container top-Margen">
                                         <label>COMPRA:</label>
                                         <input type="text" id="Num_venta" class="input-General input-Menor2">
-                                    </div>                           
+                                    </div>
                                 </form>
                             </div>
                         </div>
                         <div class="div3">
                             <div class="divInter3">
                                 <form class="FormBTn1">
-                                    <p>&nbsp;Opciones:</p>                        
+                                    <p>&nbsp;Opciones:</p>
                                     <button type="button" class="btn-centrado" id="BtnNuevaFac">
-                                        <img src="https://img.icons8.com/?size=80&id=C33Ag_PnSi9G&format=png" width="40">
+                                        <img src="https://img.icons8.com/?size=80&id=C33Ag_PnSi9G&format=png"
+                                            width="40">
                                         <span class="d-block mx-auto">Nuevo</span>
-                                    </button>                                                                       
-                                    <button type="button" class="btn-centrado" id="BtnGuardar" onclick="registrarFactura()">
+                                    </button>
+                                    <button type="button" class="btn-centrado" id="BtnGuardar"
+                                        onclick="registrarFactura()">
                                         <img src="https://img.icons8.com/?size=24&id=13279&format=png" width="40">
                                         <span class="d-block mx-auto">Guardar</span>
-                                    </button>                                                                
+                                    </button>
                                     <button type="button" class="btn-centrado" id="BtnCancelar">
-                                        <img src="https://img.icons8.com/?size=48&id=Zl30b7OBIEIH&format=png" width="40">                                            
+                                        <img src="https://img.icons8.com/?size=48&id=Zl30b7OBIEIH&format=png"
+                                            width="40">
                                         <span class="d-block mx-auto">Cancelar</span>
-                                    </button>    
-                                    <button type="button" class="btn-centrado" id="BtnImprimir" onclick="generarFactura()">
-                                        <img src="https://img.icons8.com/stickers/2x/print.png" width="40">                                           
+                                    </button>
+                                    <button type="button" class="btn-centrado" id="BtnImprimir"
+                                        onclick="generarFactura()">
+                                        <img src="https://img.icons8.com/stickers/2x/print.png" width="40">
                                         <span class="d-block mx-auto">Imprimir</span>
-                                    </button>                                                                                                 
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -344,13 +312,13 @@
                         <div class="div5">
                             <div class="Derecha-centrar">
                                 <label>Cantidad:</label>
-                                <input type="text" id="Cantidad" oninput="calcularSuma()" 
-                                    class="input-General input-Menor3 mg4"> 
+                                <input type="text" id="Cantidad" oninput="calcularSuma()"
+                                    class="input-General input-Menor3 mg4">
                                 <label>Total:</label>
-                                <input type="text" id="totalSuma" class="input-General input-Menor3 mg4" readonly>                                    
+                                <input type="text" id="totalSuma" class="input-General input-Menor3 mg4" readonly>
                             </div>
                         </div>
-                        <div class="div6">            
+                        <div class="div6">
                             <button type="button" class="btn-Form" id="BtnAgregarFila" onclick="agregarFila()">
                                 <img src="https://img.icons8.com/?size=48&id=dPHtV3gzXZxM&format=png" width="32%">
                                 Agregar
@@ -358,15 +326,16 @@
                             <button type="button" class="btn-Form" id="BtnLimpiar" onclick="eliminarTabla()">
                                 <img src="https://img.icons8.com/?size=48&id=12850&format=png" width="32%">
                                 Limpiar
-                            </button>    
-                            <button type="button" class="btn-Form" id="BtnEliminarFila" onclick="eliminarFilaSeleccionada()">
+                            </button>
+                            <button type="button" class="btn-Form" id="BtnEliminarFila"
+                                onclick="eliminarFilaSeleccionada()">
                                 <img src="https://img.icons8.com/?size=80&id=102579&format=png" width="32%">
                                 Eliminar
-                            </button>  
+                            </button>
                             <button type="button" class="btn-Form" id="BtnSalir">
                                 <img src="https://img.icons8.com/?size=80&id=115773&format=png" width="32%">
                                 Salir
-                            </button>                                                    
+                            </button>
                         </div>
                     </div>
 
@@ -381,14 +350,14 @@
                                             <th>Cantidad</th>
                                             <th>Precio Compra</th>
                                             <th>Total</th>
-                                            <th>Stock</th>                                    
+                                            <th>Stock</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>                       
+                        </div>
                     </div>
 
                     <div class="contenedorInferior">
@@ -397,11 +366,13 @@
                                 <div class="Center-DivP">
                                     <div>
                                         <label for="valor_venta" class="label_reducido">VALOR VENTA</label>
-                                        <input type="text" id="valor_venta" class="input_reducido input-General" oninput="calcularTotalPagar()"> 
+                                        <input type="text" id="valor_venta" class="input_reducido input-General"
+                                            oninput="calcularTotalPagar()">
                                     </div>
                                     <div>
                                         <label for="iva" class="label_reducido">IVA</label>
-                                        <input type="text" id="ivaT" class="input_reducido input-General" oninput="calcularTotalPagar()">
+                                        <input type="text" id="ivaT" class="input_reducido input-General"
+                                            oninput="calcularTotalPagar()">
                                     </div>
                                     <div>
                                         <label for="subtotal" class="label_reducido">SUB TOTAL</label>
@@ -409,11 +380,12 @@
                                     </div>
                                     <div>
                                         <label for="total" class="label_reducido">TOTAL A PAGAR</label>
-                                        <input type="text" id="totalPagar" class="input_reducido input-General" readonly>                                    
+                                        <input type="text" id="totalPagar" class="input_reducido input-General"
+                                            readonly>
                                     </div>
                                 </div>
                             </div>
-                        </div>                       
+                        </div>
                     </div>
 
                 </div>
@@ -444,7 +416,8 @@
     </a>
 
     <!-- Modal para mostrar la tabla de cliente -->
-    <div class="modal fade" id="tablaModalCli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tablaModalCli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document"> <!-- Ajusta el tamaño del modal según necesites -->
             <div class="modal-content">
                 <div class="modal-header">
@@ -459,10 +432,10 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre</th>                          
+                                    <th>Nombre</th>
                                     <th>Telefono</th>
-                                    <th>Direccion</th>  
-                                    <th>Servicio</th>                                
+                                    <th>Direccion</th>
+                                    <th>Servicio</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -475,7 +448,8 @@
     </div>
 
     <!-- Modal para mostrar la tabla de Productos -->
-    <div class="modal fade" id="tablaModalPro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tablaModalPro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document"> <!-- Ajusta el tamaño del modal según necesites -->
             <div class="modal-content">
                 <div class="modal-header">
@@ -496,7 +470,7 @@
                                     <th>Descripción</th>
                                     <th>Stock</th>
                                     <th>Precio Venta</th>
-                                    <th>Precio Compra</th>                                                                           
+                                    <th>Precio Compra</th>
                                     <th>Imagen</th>
                                 </tr>
                             </thead>
@@ -536,28 +510,29 @@
 
     <!-- Modal de Validación Personalizado -->
     <div class="modal fade" id="validacionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body" id="mensajeValidacionBody">
-                <!-- Aquí se mostrará el mensaje de validación -->
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
-                <!-- Puedes agregar más botones según sea necesario -->
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mensajeValidacionBody">
+                    <!-- Aquí se mostrará el mensaje de validación -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                    <!-- Puedes agregar más botones según sea necesario -->
+                </div>
             </div>
         </div>
     </div>
-    </div>
 
     <!-- Modal de Validación Personalizado -->
-    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -600,4 +575,3 @@
 </body>
 
 </html>
-

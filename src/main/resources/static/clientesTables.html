@@ -37,19 +37,21 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-shopping-bag"></i> <!-- Icono de bolsa de compras -->
+
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">ModaViva</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
+            <!-- Nav Item - Inicio -->
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-home"></i> <!-- Icono de casa -->
+                    <span>Inicio</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -57,50 +59,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
+                Menú
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -108,34 +67,35 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Registros</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <h6 class="collapse-header">Pantallas de registro:</h6>
+                        <a class="collapse-item" href="productosTables.html">Productos</a>
+                        <a class="collapse-item" href="RolTables.html">Rol</a>
+                        <a class="collapse-item" href="clientesTables.html">Clientes</a>
+                        <a class="collapse-item" href="usuariosTables.html">Usuarios</a>
+                        <a class="collapse-item" href="proveedorTables.html">Proveedores</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMovement"
+                    aria-expanded="true" aria-controls="collapseMovement">
+                    <i class="fas fa-fw fa-exchange-alt"></i> <!-- Icono de intercambio o movimiento -->
+                    <span>Movimiento</span>
+                </a>
+                <div id="collapseMovement" class="collapse" aria-labelledby="headingMovement"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Operaciones:</h6>
+                        <a class="collapse-item" href="VenderTables.html">Realizar Venta</a>
+                        <a class="collapse-item" href="ComprarTables.html">Realizar Compra</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->
@@ -277,8 +237,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" id="txtEmail"
-                                placeholder="Email">
+                            <input type="text" class="form-control form-control-user" id="txtEmail" placeholder="Email">
                             <div id="errorEmail" class="mensaje-error-Btn"></div>
                         </div>
                         <div class="form-group row">
@@ -299,7 +258,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <input type="text" class="form-control form-control-user" id="txtDireccion"
-                                    placeholder="Direccion">                    
+                                    placeholder="Direccion">
                             </div>
                             <div class="col-sm-6">
                                 <input type="text" class="form-control form-control-user" id="txtTelefono"
@@ -324,7 +283,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; ModaViva 2024</span>
                     </div>
                 </div>
             </footer>
