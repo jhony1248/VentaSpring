@@ -61,7 +61,6 @@ async function cargarProveedores() {
 }
 
 async function cargarProductosMod() {
-
     const request = await fetch('api/productos', {
         method: 'GET',
         headers: getHeaders()
@@ -404,3 +403,26 @@ function mostrarModalValidacion(mensaje) {
     $('#validacionModal').modal('show');
 }
 
+//enviamos los datos a la api para guardar la factura
+async function registrarCompra() {
+
+    alert("Enviar datos a guardar");
+    let datos = {}
+    datos.id_Compra = document.getElementById('ID_Compra').value;
+    datos.fecha = document.getElementById('Fecha').value;
+    datos.venta_Total = document.getElementById('valor_venta').value;
+    datos.sub_Total = document.getElementById('subtotal').value;
+    datos.iva = document.getElementById('ivaT').value;
+    datos.total = document.getElementById('totalPagar').value;
+    datos.id_Proveedor = idProv;
+
+    const request = await fetch('api/compra', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+    });
+  
+}

@@ -22,7 +22,7 @@ public class compra {
     @Id
     //@column sirve para referenciar la columna de un tabla 
     @Getter @Setter @Column(name = "ID_Compra")
-    private String Num_Factura;
+    private String ID_Compra;
 
     @Getter @Setter @Column(name = "Fecha")
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -43,6 +43,6 @@ public class compra {
     private float Total;
 
     @Getter @Setter @Column(name = "ID_Proveedor")
-    private int ID_Cliente;
+    private int ID_Proveedor;
 
 }
