@@ -205,7 +205,7 @@
                                     <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Nombre:</label>
-                                        <input type="text" id="nombreCli" class="input-General input-Mayor">
+                                        <input type="text" id="nombreProveedor" class="input-General input-Mayor">
                                         <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi"
                                             onclick="abrirModalProv()">
                                             <img src="https://img.icons8.com/?size=48&id=6YJn2IiSEl3F&format=png"
@@ -214,7 +214,7 @@
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Direccion:</label>
-                                        <input type="text" id="cedulaCli" class="input-General input-Menor2">
+                                        <input type="text" id="direccionProveedor" class="input-General input-Menor2">
                                     </div>
                                 </form>
                             </div>
@@ -253,11 +253,11 @@
                                     <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Comprador:</label>
-                                        <input type="text" id="nombreVende" class="input-General input-Mayor2">
+                                        <input type="text" id="nombreVende" class="input-General input-Mayor2" readonly>
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Usuario:</label>
-                                        <input type="text" id="UsuarioVende" class="input-General">
+                                        <input type="text" id="UsuarioVende" class="input-General" readonly>
                                     </div>
                                 </form>
                             </div>
@@ -267,7 +267,7 @@
                                 <form class="mi-formulario">
                                     <div class="Center-container">
                                         <label>FECHA:</label>
-                                        <input type="text" id="Fecha" class="input-General input-Menor2">
+                                        <input type="text" id="Fecha" class="input-General input-Menor2" readonly>
                                     </div>
                                 </form>
                             </div>
@@ -300,7 +300,7 @@
                                         <span class="d-block mx-auto">Cancelar</span>
                                     </button>
                                     <button type="button" class="btn-centrado" id="BtnImprimir"
-                                        onclick="generarFactura()">
+                                        onclick="generarNotaVenta()">
                                         <img src="https://img.icons8.com/stickers/2x/print.png" width="40">
                                         <span class="d-block mx-auto">Imprimir</span>
                                     </button>

@@ -1,40 +1,32 @@
 $(document).ready(function () {
   $('#TbClientesMod').DataTable();
   $('#TbProductosMod').DataTable();
-  // Agregar evento de clic a las filas de la tabla clientes
+  // Agregar evento de clic a las filas de la tabla clientes modal
   $('#TbClientesMod tbody').on('click', 'tr', function () {
-    // Llamar a la función para seleccionar la fila y obtener los datos
-    seleccionarFilaYObtenerDatos($(this));
+    seleccionarFilaCliente($(this));
   });
-  // Agregar evento de clic a las filas de la tabla productos
+  // Agregar evento de clic a las filas de la tabla productos modal
   $('#TbProductosMod tbody').on('click', 'tr', function () {
-    // Llamar a la función para seleccionar la fila y obtener los datos
-    seleccionarFilaYObtenerDatosP($(this));
+    seleccionarFilaProducto($(this));
   });
   // Agregar evento de clic a las filas de la tabla venta
   $('#TbVenta tbody').on('click', 'tr', function () {
-    // Remover la clase 'selected' de todas las filas
     $('#TbVenta tbody tr').removeClass('selected');
-
-    // Agregar la clase 'selected' a la fila clicada
     $(this).addClass('selected');
   });
 });
 
-// Función para mostrar la imagen en un modal
-function abrirModalCli() {
+function abrirModalCliente() {
   $(tablaModalCli).modal('show');
   cargarClientesMod();
 }
 
-// Función para mostrar la imagen en un modal
-function abrirModalPro() {
+function abrirModalProducto() {
   $(tablaModalPro).modal('show');
   cargarProductosMod();
 }
 
 async function cargarClientesMod() {
-
   const request = await fetch('api/clientes', {
     method: 'GET',
     headers: getHeaders()
@@ -45,8 +37,6 @@ async function cargarClientesMod() {
 
   for (let cliente of clientesJS) {
 
-    let cli = cliente.id_Cliente;
-
     let telefonoTxt = cliente.telefono == null ? '-' : cliente.telefono;
     let clienteHtml = '<tr> <td>' + cliente.id_Cliente + '</td><td>' + cliente.nombres + ' ' + cliente.apellidos + '</td><td>'
       + cliente.sexo + '</td><td>' + + cliente.cedula + '</td><td>' + cliente.email + '</td><td>' + telefonoTxt +
@@ -54,14 +44,12 @@ async function cargarClientesMod() {
     ListCliHtml += clienteHtml;
   }
 
-  //codigo para cargar los datos de los usuarios en la tabla
+  //codigo para cargar los datos de los clientes en la tabla
   $('#TbClientesMod').DataTable().clear().draw();
   $('#TbClientesMod').DataTable().rows.add($(ListCliHtml)).draw();
-
 }
 
 async function cargarProductosMod() {
-
   const request = await fetch('api/productos', {
     method: 'GET',
     headers: getHeaders()
@@ -72,9 +60,7 @@ async function cargarProductosMod() {
 
   for (let productos of productosJS) {
 
-    let idpro = productos.id_Productos;
     let btnVerImagen = '<button class="btn btn-info btn-circle btn-sm" onclick="verImagen(\'' + productos.imagen + '\')"><i class="fas fa-image"></i></button>';
-
     let contenidoNetoTxt = productos.contenido_Neto == null ? '--' : productos.contenido_Neto;
     let descripcionTxt = productos.descripcion == null ? '--' : productos.descripcion
 
@@ -86,15 +72,6 @@ async function cargarProductosMod() {
 
   $('#TbProductosMod').DataTable().clear().draw();
   $('#TbProductosMod').DataTable().rows.add($(ProdCliHtml)).draw();
-
-}
-
-function getHeaders() {
-  return {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': localStorage.token
-  }
 }
 
 // Objeto para almacenar los datos de la fila seleccionada
@@ -104,17 +81,13 @@ let datosFilaPro = {};
 let idCli = "";
 let telefonoCli = "";
 let direccionCli = "";
-// Función para seleccionar una fila y obtener sus datos
-function seleccionarFilaYObtenerDatos(fila) {
-  // Remover la clase 'selected' de todas las filas
+
+function seleccionarFilaCliente(fila) {
   $('#TbClientesMod tbody tr').removeClass('selected');
-  // Agregar la clase 'selected' a la fila especificada
   fila.addClass('selected');
 
-  // Obtener las celdas de la fila seleccionada
   var celdas = fila.find('td');
 
-  // Recorrer las celdas y almacenar los datos en el objeto
   for (var i = 0; i < celdas.length; i++) {
     var nombreColumna = $('#TbClientesMod thead th:eq(' + i + ')').text().trim(); // Nombre de la columna
     var valorCelda = $(celdas[i]).text().trim(); // Valor de la celda
@@ -124,14 +97,13 @@ function seleccionarFilaYObtenerDatos(fila) {
   idCli = datosFila['ID'];
   telefonoCli = datosFila['Telefono'];
   direccionCli = datosFila['Direccion'];
-  // Actualizar los valores de los campos del formulario con los datos obtenidos
   $('#nombreCli').val(datosFila['Nombres']);
   $('#cedulaCli').val(datosFila['Cedula']);
 }
 
 let idPro = "";
-// Función para seleccionar una fila y obtener sus datos
-function seleccionarFilaYObtenerDatosP(fila) {
+
+function seleccionarFilaProducto(fila) {
   // Remover la clase 'selected' de todas las filas
   $('#TbProductosMod tbody tr').removeClass('selected');
   // Agregar la clase 'selected' a la fila especificada
@@ -175,11 +147,9 @@ function verImagen(base64String) {
 
 // Función para obtener el nombre de usuario y el valor de "jti" desde un token JWT
 function obtenerDatosUsuarioDesdeToken(token) {
-  // Dividir el token en sus partes: encabezado, carga útil y firma
   const partes = token.split('.');
   // Decodificar la carga útil (parte intermedia del token)
   const payload = JSON.parse(atob(partes[1]));
-  // Retornar un objeto con el nombre de usuario y el valor de "jti"
   return {
     nombreUsuario: payload.nombreUsuario,
     jti: payload.jti
@@ -206,7 +176,7 @@ if (token) {
 fetch('https://worldtimeapi.org/api/timezone/America/Guayaquil')
   .then(response => response.json())
   .then(data => {
-    // Extraer la hora actual del objeto de datos
+
     const fechaHoraActual = new Date(data.datetime);
 
     // Extraer el año, mes y día de la fecha y hora actual
@@ -230,15 +200,14 @@ function calcularSuma() {
   var stock = document.getElementById("stock").value;
   var resultado = document.getElementById("totalSuma");
 
-  // Verificar si ambos inputs tienen valores
   if (precio !== "" && cantidad !== "" && stock !== "") {
     //Validar que la cantidad no supere el stock
     if (cantidad > stock) {
       resultado.value = "";
       resultado.style.backgroundColor = "red";
       mostrarModalValidacion("¡La cantidad que desea vender supera el stock disponible!");
-    } else if (stock - cantidad === 1 || cantidad == stock) { // Si la diferencia entre stock y cantidad es 1
-      resultado.style.backgroundColor = "yellow"; // Pintar el input de amarillo
+    } else if (stock - cantidad === 1 || cantidad == stock) {
+      resultado.style.backgroundColor = "yellow";
       resultado.value = (parseFloat(precio) * parseFloat(cantidad)).toFixed(2);
 
       mostrarModalValidacion("¡Cuidado! La cantidad que está a punto de vender agotará el stock del producto.");
@@ -266,6 +235,13 @@ function agregarFila() {
   if (idPro === '' || cantidad === '') {
     mensaje = "Debe ingresar un ID de producto y una cantidad.";
     mostrarModalValidacion(mensaje)
+    return;
+  }
+
+  // Verificar si la cantidad ingresada supera al stock
+  if (cantidad > stock) {
+    mensaje = "No se puede agregar el producto. La cantidad ingresada supera el stock disponible.";
+    mostrarModalValidacion(mensaje);
     return;
   }
 
@@ -338,45 +314,45 @@ function calcularTotalPagar() {
   }
 }
 
+// Función para eliminar la fila seleccionada de la tabla
 function eliminarFilaSeleccionada() {
-  // Obtener una referencia a la tabla
   var tabla = $('#TbVenta').DataTable();
-
-  // Verificar si hay una fila seleccionada
   var filaSeleccionada = $('#TbVenta tbody tr.selected');
 
-  // Si no hay ninguna fila seleccionada, mostrar un mensaje y salir de la función
   if (filaSeleccionada.length === 0) {
-    mensaje = "Por favor, selecciona una fila para eliminar.";
-    mostrarModalValidacion(mensaje)
+    var mensaje = "Por favor, selecciona una fila para eliminar.";
+    mostrarModalValidacion(mensaje);
     return;
   }
+  // Función de callback para eliminar la fila después de la confirmación
+  function eliminarFila() {
+    eliminarFilaDeTabla(tabla, filaSeleccionada);
+  }
+  mostrarModalConfirmacion('¿Estás seguro de que deseas eliminar esta fila?', eliminarFila);
+}
 
-  // Mostrar el modal de confirmación con el mensaje proporcionado
-  $('#modalConfirmacion .modal-body').text('¿Estás seguro de que deseas eliminar esta fila?');
+// Función para eliminar una fila de la tabla
+function eliminarFilaDeTabla(tabla, fila) {
+  var filaDataTable = tabla.row(fila);
+  filaDataTable.remove().draw();
+  var totalVenta = calcularTotalVenta(tabla);
+  document.getElementById("valor_venta").value = totalVenta.toFixed(2);
+  calcularTotalPagar();
+}
+
+// Función para mostrar un modal de confirmación antes de realizar una acción
+function mostrarModalConfirmacion(mensaje, callback) {
+  $('#modalConfirmacion .modal-body').text(mensaje);
   $('#modalConfirmacion').modal('show');
 
-  // Configurar el evento click del botón de confirmación en el modal
-  $('#btnConfirmarEliminar').click(function () {
-    // Eliminar la fila seleccionada de la tabla
-    var filaDataTable = tabla.row(filaSeleccionada);
-    filaDataTable.remove().draw();
-
-    // Recalcular el valor total de la venta después de eliminar la fila
-    var totalVenta = calcularTotalVenta(tabla);
-    // Mostrar el valor total de la venta
-    document.getElementById("valor_venta").value = totalVenta.toFixed(2);
-    calcularTotalPagar();
-
-    // Ocultar el modal
+  // Agrega un manejador de eventos al botón de confirmación
+  $('#btnConfirmarEliminar').one('click', function () {
+    callback();
     $('#modalConfirmacion').modal('hide');
-
-    // Remover el evento click del botón de confirmación para evitar problemas de referencia
-    $('#btnConfirmarEliminar').off('click');
   });
 }
 
-function eliminarTabla() {
+function eliminarTablaCompleta() {
   // Mostrar el modal de confirmación con el mensaje proporcionado
   $('#modalConfirmacion .modal-body').text('¿Estás seguro de que deseas limpiar la tabla?');
   $('#modalConfirmacion').modal('show');
@@ -397,8 +373,7 @@ function eliminarTabla() {
 
 //enviamos los datos a la api para guardar la factura
 async function registrarFactura() {
-
-  alert("Enviar datos a guardar");
+  mostrarModalConfirmacion('¿Enviar datos a guardar?');
   let datos = {}
   datos.num_Factura = document.getElementById('Num_venta').value;
   datos.fecha = document.getElementById('Fecha').value;
@@ -418,6 +393,7 @@ async function registrarFactura() {
     body: JSON.stringify(datos)
   });
 
+  mostrarModalValidacion("Venta registrada correctamente");
   registrarDetalleVenta();
 }
 
@@ -425,7 +401,7 @@ async function registrarDetalleVenta() {
   var tabla = $('#TbVenta').DataTable();
   const num_Fact = document.getElementById('Num_venta').value;
 
-  const promesasEnvio = []; // Array para almacenar todas las promesas de envío
+  const promesasEnvio = [];
 
   for (var i = 0; i < tabla.rows().count(); i++) {
     var rowData = tabla.row(i).data(); // Obtener los datos de la fila 
@@ -440,9 +416,7 @@ async function registrarDetalleVenta() {
   await Promise.all(promesasEnvio);
 }
 
-//enviamos los datos a la api para guardar el detalle de venta
 async function enviarDatosDetalleVenta(datos) {
-
   try {
     const request = await fetch('api/detalleVenta', {
       method: 'POST',
@@ -457,24 +431,19 @@ async function enviarDatosDetalleVenta(datos) {
     }
   } catch (error) {
     console.error(error);
-    throw error; // Lanzar nuevamente el error para que se muestre en la consola del navegador
+    throw error;
   }
-
 }
 
 // Función para mostrar el modal de validación con un mensaje personalizado
 function mostrarModalValidacion(mensaje) {
-  // Actualizar el contenido del cuerpo del mensaje con el mensaje recibido
   document.getElementById("mensajeValidacionBody").innerText = mensaje;
-
-  // Activar el modal
   $('#validacionModal').modal('show');
 }
 
 // Función para imprimir y generar la factura
 function generarFactura() {
 
-  // Recopilar los datos del formulario y la tabla
   const facturaNumero = document.getElementById('Num_venta').value;
   const fecha = document.getElementById('Fecha').value;
   const datosCliente = obtenerDatosCliente();
@@ -503,7 +472,7 @@ function generarFactura() {
     doc.setFontSize(10);
 
     doc.text('Ruc: 1725233618054', 70, 20);
-    doc.text('Nombre: Viveres el Cisne', 70, 30);
+    doc.text('Nombre: MODA VIVA', 70, 30);
     doc.text('Teléfono: 0984756542', 70, 40);
     doc.text('Dirección: Guamaní', 70, 50);
 
@@ -566,8 +535,6 @@ function generarFactura() {
     // Agregar línea divisoria
     doc.setLineWidth(0.5); // Establecer el ancho de la línea
     doc.line(75, totalSpaceLinea, 135, totalSpaceLinea); // Dibujar la línea
-
-    // Agregar un agradecimiento por la compra
     doc.text('¡Gracias por su compra!', 82, totalSpaceGracias);
 
     // Generar el PDF y abrirlo en una nueva ventana del navegador
@@ -598,7 +565,6 @@ function obtenerDatosCliente() {
 
 function obtenerDatosTabla() {
   const datosTabla = [];
-  // Obtener la referencia a la tabla utilizando DataTables
   const tabla = $('#TbVenta').DataTable();
   // Recorrer cada fila de la tabla
   tabla.rows().every(function () {
@@ -606,14 +572,21 @@ function obtenerDatosTabla() {
     const rowData = this.data();
     // Crear un objeto para almacenar los datos de la fila
     const datosFila = {
-      nombre: rowData[1], // Suponiendo que la primera columna contiene el ID de Producto
-      cantidad: rowData[2],    // Suponiendo que la tercera columna contiene la Cantidad
-      precio: rowData[3],      // Suponiendo que la quinta columna contiene el Precio
+      nombre: rowData[1],
+      cantidad: rowData[2],
+      precio: rowData[3],
       totalPa: rowData[4]
     };
-    // Agregar los datos de la fila al array de datos de la tabla
+    // Agregar los datos de la fila al array 
     datosTabla.push(datosFila);
   });
   return datosTabla;
 }
 
+function getHeaders() {
+  return {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.token
+  }
+}

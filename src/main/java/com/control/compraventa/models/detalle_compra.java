@@ -21,11 +21,11 @@ public class detalle_compra {
     @Getter @Setter @Column(name = "ID")
     private int ID;
 
-    @Getter @Setter @Column(name = "Num_Factura")
-    private String Num_Factura;
-
     @Getter @Setter @Column(name = "ID_Producto")
     private int ID_Producto;
+
+    @Getter @Setter @Column(name = "ID_Compra")
+    private String ID_Compra;
 
     @Getter @Setter @Column(name = "Cantidad")
     private float Cantidad;

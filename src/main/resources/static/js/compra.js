@@ -47,7 +47,7 @@ async function cargarProveedores() {
     for (let proveedor of proveedorJS) {
 
         let prov = proveedor.id_Proveedor;
-    
+
         let proveedorHtml = '<tr> <td>' + proveedor.id_Proveedor + '</td><td>' + proveedor.nombre_Proveedor + '</td><td>'
             + proveedor.telefono_Proveedor + '</td><td>' + proveedor.direccion_Proveedor + '</td><td>' +
             proveedor.servicio + '</td></tr>';
@@ -101,7 +101,7 @@ let datosFila = {};
 let datosFilaPro = {};
 
 let idProv = "";
-let telefonoCli = "";
+let telefonoProveedor = "";
 let direccionCli = "";
 // Función para seleccionar una fila y obtener sus datos
 function seleccionarFilaYObtenerDatos(fila) {
@@ -121,11 +121,11 @@ function seleccionarFilaYObtenerDatos(fila) {
     }
 
     idProv = datosFila['ID'];
-    telefonoCli = datosFila['Telefono'];
+    telefonoProveedor = datosFila['Telefono'];
     direccionCli = datosFila['Direccion'];
     // Actualizar los valores de los campos del formulario con los datos obtenidos
-    $('#nombreCli').val(datosFila['Nombre']);
-    $('#cedulaCli').val(datosFila['Direccion']);
+    $('#nombreProveedor').val(datosFila['Nombre']);
+    $('#direccionProveedor').val(datosFila['Direccion']);
 }
 
 let idPro = "";
@@ -268,6 +268,13 @@ function agregarFila() {
         return;
     }
 
+    // Verificar si la cantidad ingresada supera al stock
+    if (cantidad > stock) {
+        mensaje = "No se puede agregar el producto. La cantidad ingresada supera el stock disponible.";
+        mostrarModalValidacion(mensaje);
+        return;
+    }
+
     // Verificar si el idPro ya existe en la tabla
     var tabla = $('#TbCompra').DataTable();
     var existe = false;
@@ -403,10 +410,9 @@ function mostrarModalValidacion(mensaje) {
     $('#validacionModal').modal('show');
 }
 
-//enviamos los datos a la api para guardar la factura
+//enviamos los datos a la api para guardar la compra
 async function registrarCompra() {
-
-    alert("Enviar datos a guardar");
+    mostrarModalValidacion("Enviar datos a guardar");
     let datos = {}
     datos.id_Compra = document.getElementById('ID_Compra').value;
     datos.fecha = document.getElementById('Fecha').value;
@@ -417,12 +423,175 @@ async function registrarCompra() {
     datos.id_Proveedor = idProv;
 
     const request = await fetch('api/compra', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(datos)
+        method: 'POST',
+        headers: getHeaders(),
+        body: JSON.stringify(datos)
     });
+
+    mostrarModalValidacion("Venta registrada correctamente");
+    registrarDetalleCompra();
+}
+
+async function registrarDetalleCompra() {
+    var tabla = $('#TbCompra').DataTable();
+    const num_Compra = document.getElementById('ID_Compra').value;
+    const promesasEnvio = [];
   
+    for (var i = 0; i < tabla.rows().count(); i++) {
+      var rowData = tabla.row(i).data(); // Obtener los datos de la fila 
+      let datos = {}
+      datos.id_Compra = num_Compra;
+      datos.id_Producto = rowData[0];
+      datos.cantidad = rowData[2];
+      const promesa = enviarDatosDetalleCompra(datos);
+      promesasEnvio.push(promesa); // Agregar la promesa al array
+    }
+    // Esperar a que todas las promesas se resuelvan
+    await Promise.all(promesasEnvio);
+  }
+  
+  async function enviarDatosDetalleCompra(datos) {
+    try {
+      const request = await fetch('api/detalleCompra', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(datos)
+      });
+      if (!response.ok) {
+        throw new Error('Error al enviar los datos.');
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+// Función para imprimir y generar la nota de venta
+function generarNotaVenta() {
+
+    const NumeroCompra = document.getElementById('ID_Compra').value;
+    const fecha = document.getElementById('Fecha').value;
+    const datosProveedor = obtenerDatosProveedor();
+    const datosTabla = obtenerDatosTabla();
+
+    // Obtener el nombre del cliente para generar el nombre de la factura
+    const nombreProveedor = datosProveedor.nombre;
+
+    // Generar el nombre de la factura combinando el número de factura y el nombre del cliente
+    const nombreFactura = `Factura_${NumeroCompra}_${nombreProveedor}.pdf`;
+
+    // Crear un documento PDF
+    const doc = new jsPDF();
+    var img = new Image();
+    img.src = '../img/iconFact.png';
+
+    // Esperar a que la imagen se cargue completamente
+    img.onload = function () {
+        // Agregar la imagen al documento
+        doc.addImage(img, 'png', 15, 10, 30, 30);
+
+        doc.setFontSize(10);
+
+        doc.text('Ruc: 1725233618054', 70, 20);
+        doc.text('Nombre: MODA VIVA', 70, 30);
+        doc.text('Teléfono: 0984756542', 70, 40);
+        doc.text('Dirección: Guamaní', 70, 50);
+
+        doc.text('Factura: ' + NumeroCompra, 140, 30);
+        doc.text('Fecha: ' + fecha, 140, 40);
+
+        // Cambiar el color del texto a azul
+        doc.setTextColor(0, 0, 255);
+        doc.setFontSize(11);
+
+        // Agregar datos del proveedor encima de la tabla
+        doc.text(`Nombre:`, 15, 60);
+        doc.text(`Teléfono:`, 50, 60);
+        doc.text(`Dirección:`, 120, 60);
+        doc.setTextColor(0);
+        doc.text(datosProveedor.nombre, 15, 70);
+        doc.text(datosProveedor.telefono, 50, 70);
+        doc.text(datosProveedor.direccion, 120, 70);
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 255);
+
+        // Aplicar un fondo de color gris en la línea especificada
+        doc.setFillColor(192, 192, 192);
+        doc.rect(10, 75, 190, 10, 'F'); // Dibujar un rectángulo de fondo gris
+
+        doc.text('Cantidad:', 15, 80);
+        doc.text('Descripción:', 40, 80);
+        doc.text('Precio:', 150, 80);
+        doc.text('Total a Pagar:', 170, 80);
+
+        // Restaurar el color del texto a negro
+        doc.setTextColor(0);
+
+        // Insertar datos de la tabla
+        datosTabla.forEach((fila, indice) => {
+            doc.text(fila.cantidad, 20, 90 + (indice * 10)); // Columna de cantidad
+            doc.text(fila.nombre, 40, 90 + (indice * 10));   // Columna de nombre
+            doc.text(fila.precio, 150, 90 + (indice * 10));   // Columna de precio
+            doc.text(fila.totalPa, 175, 90 + (indice * 10));  // Columna de totalPagado
+        });
+
+        const totalSpace = 90 + (datosTabla.length * 10);
+        const totalSpaceFirma = 110 + (datosTabla.length * 10);
+        const totalSpaceLinea = 130 + (datosTabla.length * 10);
+        const totalSpaceGracias = 140 + (datosTabla.length * 10);
+
+        doc.text(`Total a pagar: ${datosProveedor.total}`, 165, totalSpace);
+
+        doc.setFontSize(12);
+
+        // Agregar la firma
+        doc.text('Firma', 100, totalSpaceFirma);
+
+        // Agregar línea divisoria
+        doc.setLineWidth(0.5); // Establecer el ancho de la línea
+        doc.line(75, totalSpaceLinea, 135, totalSpaceLinea); // Dibujar la línea
+        doc.text('¡La compra se a registrado!', 82, totalSpaceGracias);
+
+        // Generar el PDF y abrirlo en una nueva ventana del navegador
+        doc.save(nombreFactura);
+    }
+}
+
+function obtenerDatosProveedor() {
+    const nombre = document.getElementById('nombreProveedor').value;
+    const direccion = document.getElementById('direccionProveedor').value;
+    const total = document.getElementById('totalPagar').value;
+    const telefono = telefonoProveedor;
+
+    // Crear un objeto con los datos del cliente
+    const datosProveedor = {
+        nombre: nombre,
+        direccion: direccion,
+        telefono: telefono,
+        total: total
+    };
+    return datosProveedor;
+}
+
+function obtenerDatosTabla() {
+    const datosTabla = [];
+    const tabla = $('#TbCompra').DataTable();
+    // Recorrer cada fila de la tabla
+    tabla.rows().every(function () {
+        // Obtener los datos de la fila actual
+        const rowData = this.data();
+        // Crear un objeto para almacenar los datos de la fila
+        const datosFila = {
+            nombre: rowData[1],
+            cantidad: rowData[2],
+            precio: rowData[3],
+            totalPa: rowData[4]
+        };
+        // Agregar los datos de la fila al array 
+        datosTabla.push(datosFila);
+    });
+    return datosTabla;
 }

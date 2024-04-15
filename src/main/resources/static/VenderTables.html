@@ -206,7 +206,7 @@
                                         &nbsp;&nbsp;
                                         <label>Nombre:</label>
                                         <input type="text" id="nombreCli" class="input-General input-Mayor">
-                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi" onclick="abrirModalCli()">
+                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi" onclick="abrirModalCliente()">
                                             <img src="https://img.icons8.com/?size=48&id=6YJn2IiSEl3F&format=png" width="24">
                                         </button>
                                     </div>
@@ -223,7 +223,7 @@
                                         &nbsp;&nbsp;
                                         <label>Producto:</label>
                                         <input type="text" id="nombrePro" class="input-General input-Mayor2">
-                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnProducto" onclick="abrirModalPro(), calcularSuma()">
+                                        <button type="button" class="btn btn-primary btn-sm border-0" id="BtnProducto" onclick="abrirModalProducto(), calcularSuma()">
                                             <img src="https://img.icons8.com/?size=48&id=ceXhtoEtusjo&format=png" width="24">
                                         </button>
                                     </div>
@@ -249,11 +249,11 @@
                                     <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Vendedor:</label>
-                                        <input type="text" id="nombreVende" class="input-General input-Mayor2">
+                                        <input type="text" id="nombreVende" class="input-General input-Mayor2" readonly>
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Usuario:</label>
-                                        <input type="text" id="UsuarioVende" class="input-General">
+                                        <input type="text" id="UsuarioVende" class="input-General" readonly>
                                     </div>                      
                                 </form>
                             </div>
@@ -263,7 +263,7 @@
                                 <form class="mi-formulario">                                                     
                                     <div class="Center-container">
                                         <label>FECHA:</label>
-                                        <input type="text" id="Fecha" class="input-General input-Menor2">
+                                        <input type="text" id="Fecha" class="input-General input-Menor2" readonly>
                                     </div>                           
                                 </form>
                             </div>
@@ -315,7 +315,7 @@
                                 <img src="https://img.icons8.com/?size=48&id=dPHtV3gzXZxM&format=png" width="32%">
                                 Agregar
                             </button>
-                            <button type="button" class="btn-Form" id="BtnLimpiar" onclick="eliminarTabla()">
+                            <button type="button" class="btn-Form" id="BtnLimpiar" onclick="eliminarTablaCompleta()">
                                 <img src="https://img.icons8.com/?size=48&id=12850&format=png" width="32%">
                                 Limpiar
                             </button>    
