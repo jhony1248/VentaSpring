@@ -16,6 +16,8 @@ public interface ProductoDao {
 
     void editarProducto(productos producto);
 
+    void actualizarStock(int idProducto, int cantidad);
+
 } 
     
 

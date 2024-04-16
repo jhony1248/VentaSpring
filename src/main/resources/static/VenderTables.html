@@ -205,14 +205,14 @@
                                     <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Nombre:</label>
-                                        <input type="text" id="nombreCli" class="input-General input-Mayor">
+                                        <input type="text" id="nombreCli" class="input-General input-Mayor" readonly>
                                         <button type="button" class="btn btn-primary btn-sm border-0" id="BtnNombreCLi" onclick="abrirModalCliente()">
                                             <img src="https://img.icons8.com/?size=48&id=6YJn2IiSEl3F&format=png" width="24">
                                         </button>
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Cédula:</label>
-                                        <input type="text" id="cedulaCli" class="input-General input-Menor2">
+                                        <input type="text" id="cedulaCli" class="input-General input-Menor2" readonly>
                                     </div>                           
                                 </form>
                             </div>
@@ -222,24 +222,24 @@
                                     <div class="Izquierda-container" >
                                         &nbsp;&nbsp;
                                         <label>Producto:</label>
-                                        <input type="text" id="nombrePro" class="input-General input-Mayor2">
+                                        <input type="text" id="nombrePro" class="input-General input-Mayor2" readonly>
                                         <button type="button" class="btn btn-primary btn-sm border-0" id="BtnProducto" onclick="abrirModalProducto(), calcularSuma()">
                                             <img src="https://img.icons8.com/?size=48&id=ceXhtoEtusjo&format=png" width="24">
                                         </button>
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Stock:</label>
-                                        <input type="text" id="stock" class="input-Menor input-General">
+                                        <input type="text" id="stock" class="input-Menor input-General" readonly>
                                     </div>      
                                     <div class="Izquierda-container">
                                         &nbsp;&nbsp;
                                         <label>Contenido Neto:</label>
-                                        <input type="text" id="Cont_Net" class="input-General">                                     
+                                        <input type="text" id="Cont_Net" class="input-General" readonly>                                     
                                     </div>
                                     <div class="Derecha-container">
                                         <label>Precio $/:</label>
                                         <input type="text" id="precioU" oninput="calcularSuma()" 
-                                            class="input-Menor input-General">
+                                            class="input-Menor input-General" readonly>
                                     </div>                     
                                 </form>
                             </div>
@@ -271,7 +271,7 @@
                                 <form class="mi-formulario">                                                     
                                     <div class="Center-container top-Margen">
                                         <label>VENTA:</label>
-                                        <input type="text" id="Num_venta" class="input-General input-Menor2">
+                                        <input type="text" id="Num_venta" class="input-General input-Menor2" readonly>
                                     </div>                           
                                 </form>
                             </div>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.control.compraventa.dao.ProductoDao;
 import com.control.compraventa.models.productos;
@@ -17,42 +18,48 @@ public class ProductoControllers {
     @Autowired
     private ProductoDao productoDao;
 
-    //Listar producto
+    // Listar producto
     @RequestMapping(value = "api/productos", method = RequestMethod.GET)
-    public List<productos> getProducto(){
+    public List<productos> getProducto() {
         return productoDao.getProductos();
     }
 
-    //Eliminar producto Tabla
+    // Eliminar producto Tabla
     @RequestMapping(value = "api/productos/{producto}", method = RequestMethod.DELETE)
-    public void eliminar(@PathVariable String producto){
+    public void eliminar(@PathVariable String producto) {
         productoDao.eliminarProducto(producto);
     }
 
-    //añadir nuevo producto
+    // añadir nuevo producto
     @RequestMapping(value = "api/productos", method = RequestMethod.POST)
     public void registrarProductos(@RequestBody productos producto) {
-    
+
         productoDao.registrarProducto(producto);
-    } 
-    
-    //Listar producto especifico 
+    }
+
+    // Listar producto especifico
     @RequestMapping(value = "api/productos/{producto}", method = RequestMethod.GET)
-    public productos ObtenerUsuario(@PathVariable String producto){
-        
+    public productos ObtenerUsuario(@PathVariable String producto) {
+
         productos prod = productoDao.ObtenerProductoEspecifico(producto);
-        if(prod != null) {
+        if (prod != null) {
             return prod;
         } else {
             return null;
         }
     }
-     
-    //editar producto
+
+    // editar producto
     @RequestMapping(value = "api/productos/editar", method = RequestMethod.PUT)
-    public void editarProducto(@RequestBody productos producto){
+    public void editarProducto(@RequestBody productos producto) {
 
         productoDao.editarProducto(producto);
     }
-     
+
+    // Actualizar Stock producto
+    @RequestMapping(value = "api/stock/{idProducto}/cantidad", method = RequestMethod.PUT)
+    public void actualizarStock(@PathVariable int idProducto, @RequestParam int cantidad) {
+        productoDao.actualizarStock(idProducto, cantidad);
+    }
+
 }

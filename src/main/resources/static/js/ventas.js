@@ -402,6 +402,7 @@ async function registrarDetalleVenta() {
   const num_Fact = document.getElementById('Num_venta').value;
 
   const promesasEnvio = [];
+  const promesasStock = [];
 
   for (var i = 0; i < tabla.rows().count(); i++) {
     var rowData = tabla.row(i).data(); // Obtener los datos de la fila 
@@ -409,16 +410,22 @@ async function registrarDetalleVenta() {
     datos.num_Factura = num_Fact;
     datos.id_Producto = rowData[0];
     datos.cantidad = rowData[2];
-    const promesa = enviarDatosDetalleVenta(datos);
-    promesasEnvio.push(promesa); // Agregar la promesa al array
+
+    // Enviar datos de detalle de venta
+    const promesaDetalleVenta = enviarDatosDetalleVenta(datos);
+    promesasEnvio.push(promesaDetalleVenta); // Agregar la promesa al array
+    // Actualizar el stock del producto
+    const promesaStockEnv = actualizarStockProducto(datos.id_Producto, datos.cantidad);
+    promesasStock.push(promesaStockEnv);
   }
   // Esperar a que todas las promesas se resuelvan
   await Promise.all(promesasEnvio);
+  await Promise.all(promesasStock);
 }
 
 async function enviarDatosDetalleVenta(datos) {
   try {
-    const request = await fetch('api/detalleVenta', {
+    const response = await fetch('api/detalleVenta', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -429,6 +436,22 @@ async function enviarDatosDetalleVenta(datos) {
     if (!response.ok) {
       throw new Error('Error al enviar los datos.');
     }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+async function actualizarStockProducto(idProducto, cantidad) {
+  try {
+    const response = await fetch(`/api/stock/${idProducto}/cantidad?cantidad=${cantidad}`, {
+      method: 'PUT'
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al actualizar el stock del producto.');
+    }
+
   } catch (error) {
     console.error(error);
     throw error;
