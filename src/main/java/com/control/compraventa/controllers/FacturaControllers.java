@@ -18,9 +18,11 @@ public class FacturaControllers {
     //añadir nueva factura
     @RequestMapping(value = "api/facturas", method = RequestMethod.POST)
     public void registrarFacturas(@RequestBody facturas factura){
-
         facturaDao.registrar(factura);
     }
 
-
+    @RequestMapping(value = "api/facturas/NumFactura", method = RequestMethod.GET)
+    public String obtenerUltimoNumeroFactura(){
+        return facturaDao.ObtenerNumeroVentaEspecifico();
+    }
 }

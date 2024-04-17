@@ -59,7 +59,6 @@ public class ProductoDaoImp implements ProductoDao {
 
     @Override
     public void actualizarStock(int idProducto, int cantidad) {
-        // Crear la consulta nativa para actualizar el stock
         String query = "UPDATE productos SET Stock = Stock - :cantidad WHERE ID_Productos = :idProducto";
 
         int filasActualizadas = entityManager.createQuery(query)

@@ -464,6 +464,30 @@ function mostrarModalValidacion(mensaje) {
   $('#validacionModal').modal('show');
 }
 
+async function generarNumeroFactura() {
+  const request = await fetch('api/facturas/NumFactura', {
+    method: 'GET',
+    headers: getHeaders()   
+  });
+  
+  const numFacturaJS = await request.text();
+
+  if (numFacturaJS === 0) {
+    document.getElementById('Num_venta').value = "V-00001";
+    return;
+  }
+
+  const siguienteNumeroFactura = generarSiguienteNumeroFactura(numFacturaJS);
+  document.getElementById('Num_venta').value = siguienteNumeroFactura;
+
+}
+
+function generarSiguienteNumeroFactura(numeroFacturaActual) {
+  const numero = parseInt(numeroFacturaActual.split('-')[1]);
+  const siguienteNumero = numero + 1;
+  return `V-${siguienteNumero.toString().padStart(5, '0')}`;
+}
+
 // Función para imprimir y generar la factura
 function generarFactura() {
 
