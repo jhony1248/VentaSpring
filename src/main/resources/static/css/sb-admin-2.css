@@ -11343,12 +11343,12 @@ body.sidebar-toggled footer.sticky-footer {
 
 .div2 {
   width: 20%; /* Divide el contenedor en dos partes */
-  background-color: violet;
+  background-color: lightgray;
 }
 
 .div3 {
   width: 20%; /* Divide el contenedor en dos partes */
-  background-color: pink;
+  background-color: lightgray;
 }
 
 .div5 {

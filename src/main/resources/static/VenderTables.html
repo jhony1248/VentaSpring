@@ -263,7 +263,8 @@
                                 <form class="mi-formulario">                                                     
                                     <div class="Center-container">
                                         <label>FECHA:</label>
-                                        <input type="text" id="Fecha" class="input-General input-Menor2" readonly>
+                                        <input type="text" id="Fecha" class="input-General input-Menor2" readonly 
+                                            style="text-align: center;">
                                     </div>                           
                                 </form>
                             </div>
@@ -271,7 +272,8 @@
                                 <form class="mi-formulario">                                                     
                                     <div class="Center-container top-Margen">
                                         <label>VENTA:</label>
-                                        <input type="text" id="Num_venta" class="input-General input-Menor2" readonly>
+                                        <input type="text" id="Num_venta" class="input-General input-Menor2" readonly 
+                                            style="text-align: center;">
                                     </div>                           
                                 </form>
                             </div>
@@ -288,11 +290,11 @@
                                         <img src="https://img.icons8.com/?size=24&id=13279&format=png" width="40">
                                         <span class="d-block mx-auto">Guardar</span>
                                     </button>                                                                
-                                    <button type="button" class="btn-centrado" id="BtnCancelar">
+                                    <button type="button" class="btn-centrado" id="BtnCancelar" onclick="recargarPaginaCancelar()">
                                         <img src="https://img.icons8.com/?size=48&id=Zl30b7OBIEIH&format=png" width="40">                                            
                                         <span class="d-block mx-auto">Cancelar</span>
                                     </button>    
-                                    <button type="button" class="btn-centrado" id="BtnImprimir" onclick="generarFactura()">
+                                    <button type="button" class="btn-centrado" id="BtnImprimir" onclick="generarFactura()" disabled>
                                         <img src="https://img.icons8.com/stickers/2x/print.png" width="40">                                           
                                         <span class="d-block mx-auto">Imprimir</span>
                                     </button>                                                                                                 
@@ -519,7 +521,7 @@
     </div>
 
     <!-- Modal de Validación Personalizado -->
-    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+    <div class="modal fade" id="modalConfirmacionEliminar" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -534,6 +536,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación Personalizado -->
+    <div class="modal fade" id="modalConfirmacion" tabindex="-1" role="dialog" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Aquí se mostrará el mensaje de confirmación dinámico -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnConfirmar">Confirmar</button>
                 </div>
             </div>
         </div>

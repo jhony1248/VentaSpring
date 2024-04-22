@@ -108,8 +108,6 @@ function seleccionarFilaProducto(fila) {
   $('#TbProductosMod tbody tr').removeClass('selected');
   // Agregar la clase 'selected' a la fila especificada
   fila.addClass('selected');
-
-  // Obtener las celdas de la fila seleccionada
   var celdas = fila.find('td');
 
   // Recorrer las celdas y almacenar los datos en el objeto
@@ -195,10 +193,14 @@ fetch('https://worldtimeapi.org/api/timezone/America/Guayaquil')
   });
 
 function calcularSuma() {
-  var precio = document.getElementById("precioU").value;
-  var cantidad = document.getElementById("Cantidad").value;
-  var stock = document.getElementById("stock").value;
+  var precioHTMl = document.getElementById("precioU").value;
+  var cantidadHTMl = document.getElementById("Cantidad").value;
+  var stockHTMl = document.getElementById("stock").value;
   var resultado = document.getElementById("totalSuma");
+
+  var precio = parseInt(precioHTMl);
+  var cantidad = parseInt(cantidadHTMl);
+  var stock = parseInt(stockHTMl);
 
   if (precio !== "" && cantidad !== "" && stock !== "") {
     //Validar que la cantidad no supere el stock
@@ -231,6 +233,10 @@ function agregarFila() {
   var total = document.getElementById("totalSuma").value;
   var stock = document.getElementById("stock").value;
 
+  // Convertir cantidad y stock a números antes de la comparación
+  var cantidadNum = parseInt(cantidad);
+  var stockNum = parseInt(stock);
+
   // Validar si tanto idPro como cantidad no están vacíos
   if (idPro === '' || cantidad === '') {
     mensaje = "Debe ingresar un ID de producto y una cantidad.";
@@ -239,7 +245,7 @@ function agregarFila() {
   }
 
   // Verificar si la cantidad ingresada supera al stock
-  if (cantidad > stock) {
+  if (cantidadNum  > stockNum) {
     mensaje = "No se puede agregar el producto. La cantidad ingresada supera el stock disponible.";
     mostrarModalValidacion(mensaje);
     return;
@@ -328,7 +334,7 @@ function eliminarFilaSeleccionada() {
   function eliminarFila() {
     eliminarFilaDeTabla(tabla, filaSeleccionada);
   }
-  mostrarModalConfirmacion('¿Estás seguro de que deseas eliminar esta fila?', eliminarFila);
+  mostrarModalConfirmacionEliminar('¿Estás seguro de que deseas eliminar esta fila?', eliminarFila);
 }
 
 // Función para eliminar una fila de la tabla
@@ -340,22 +346,10 @@ function eliminarFilaDeTabla(tabla, fila) {
   calcularTotalPagar();
 }
 
-// Función para mostrar un modal de confirmación antes de realizar una acción
-function mostrarModalConfirmacion(mensaje, callback) {
-  $('#modalConfirmacion .modal-body').text(mensaje);
-  $('#modalConfirmacion').modal('show');
-
-  // Agrega un manejador de eventos al botón de confirmación
-  $('#btnConfirmarEliminar').one('click', function () {
-    callback();
-    $('#modalConfirmacion').modal('hide');
-  });
-}
-
 function eliminarTablaCompleta() {
   // Mostrar el modal de confirmación con el mensaje proporcionado
-  $('#modalConfirmacion .modal-body').text('¿Estás seguro de que deseas limpiar la tabla?');
-  $('#modalConfirmacion').modal('show');
+  $('#modalConfirmacionEliminar .modal-body').text('¿Estás seguro de que deseas limpiar la tabla?');
+  $('#modalConfirmacionEliminar').modal('show');
   // Configurar el evento click del botón de confirmación en el modal
   $('#btnConfirmarEliminar').click(function () {
     var tabla = $('#TbVenta').DataTable();
@@ -364,7 +358,7 @@ function eliminarTablaCompleta() {
     document.getElementById("valor_venta").value = "";
     calcularTotalPagar();
     // Ocultar el modal
-    $('#modalConfirmacion').modal('hide');
+    $('#modalConfirmacionEliminar').modal('hide');
 
     // Remover el evento click del botón de confirmación para evitar problemas de referencia
     $('#btnConfirmarEliminar').off('click');
@@ -373,7 +367,6 @@ function eliminarTablaCompleta() {
 
 //enviamos los datos a la api para guardar la factura
 async function registrarFactura() {
-  mostrarModalConfirmacion('¿Enviar datos a guardar?');
   let datos = {}
   datos.num_Factura = document.getElementById('Num_venta').value;
   datos.fecha = document.getElementById('Fecha').value;
@@ -384,17 +377,19 @@ async function registrarFactura() {
   datos.id_Cliente = idCli;
   datos.usuario = document.getElementById('UsuarioVende').value;
 
-  const request = await fetch('api/facturas', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(datos)
-  });
+  mostrarModalConfirmacion("¿Estás seguro de que deseas registrar esta factura?", async function() {
+    const request = await fetch('api/facturas', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+    });
 
-  mostrarModalValidacion("Venta registrada correctamente");
-  registrarDetalleVenta();
+    mostrarModalValidacion("Venta registrada correctamente");
+    registrarDetalleVenta();
+  });  
 }
 
 async function registrarDetalleVenta() {
@@ -479,6 +474,8 @@ async function generarNumeroFactura() {
 
   const siguienteNumeroFactura = generarSiguienteNumeroFactura(numFacturaJS);
   document.getElementById('Num_venta').value = siguienteNumeroFactura;
+
+  document.getElementById("BtnImprimir").disabled = false;
 
 }
 
@@ -636,4 +633,32 @@ function getHeaders() {
     'Content-Type': 'application/json',
     'Authorization': localStorage.token
   }
+}
+
+function recargarPaginaCancelar() {
+  mostrarModalConfirmacion("¿Estás seguro de que deseas cancelar esta factura?", async function() {
+    location.reload();
+  });
+}
+
+// Función para mostrar un modal de confirmación antes de realizar una acción
+function mostrarModalConfirmacion(mensaje, callback) {
+  $('#modalConfirmacion .modal-body').text(mensaje);
+  $('#modalConfirmacion').modal('show');
+
+  $('#btnConfirmar').one('click', function () {
+    callback();
+    $('#modalConfirmacion').modal('hide');
+  });
+}
+
+// Función para mostrar un modal de confirmación antes de eliminar
+function mostrarModalConfirmacionEliminar(mensaje, callback) {
+  $('#modalConfirmacionEliminar .modal-body').text(mensaje);
+  $('#modalConfirmacionEliminar').modal('show');
+
+  $('#btnConfirmarEliminar').one('click', function () {
+    callback();
+    $('#modalConfirmacionEliminar').modal('hide');
+  });
 }
