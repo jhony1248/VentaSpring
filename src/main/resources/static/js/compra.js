@@ -436,38 +436,64 @@ async function registrarDetalleCompra() {
     var tabla = $('#TbCompra').DataTable();
     const num_Compra = document.getElementById('ID_Compra').value;
     const promesasEnvio = [];
-  
+
     for (var i = 0; i < tabla.rows().count(); i++) {
-      var rowData = tabla.row(i).data(); // Obtener los datos de la fila 
-      let datos = {}
-      datos.id_Compra = num_Compra;
-      datos.id_Producto = rowData[0];
-      datos.cantidad = rowData[2];
-      const promesa = enviarDatosDetalleCompra(datos);
-      promesasEnvio.push(promesa); // Agregar la promesa al array
+        var rowData = tabla.row(i).data(); // Obtener los datos de la fila 
+        let datos = {}
+        datos.id_Compra = num_Compra;
+        datos.id_Producto = rowData[0];
+        datos.cantidad = rowData[2];
+        const promesa = enviarDatosDetalleCompra(datos);
+        promesasEnvio.push(promesa); // Agregar la promesa al array
     }
     // Esperar a que todas las promesas se resuelvan
     await Promise.all(promesasEnvio);
-  }
-  
-  async function enviarDatosDetalleCompra(datos) {
+}
+
+async function enviarDatosDetalleCompra(datos) {
     try {
-      const request = await fetch('api/detalleCompra', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(datos)
-      });
-      if (!response.ok) {
-        throw new Error('Error al enviar los datos.');
-      }
+        const request = await fetch('api/detalleCompra', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datos)
+        });
+        if (!response.ok) {
+            throw new Error('Error al enviar los datos.');
+        }
     } catch (error) {
-      console.error(error);
-      throw error;
+        console.error(error);
+        throw error;
     }
-  }
+}
+
+async function generarNumeroCompra() {
+    const request = await fetch('api/facturas/idCompra', {
+        method: 'GET',
+        headers: getHeaders()
+    });
+
+    const idCompraJS = await request.text();
+
+    if (idCompraJS == "0") {
+        document.getElementById('ID_Compra').value = "C-00001";
+        return;
+    }
+
+    const siguienteNumeroFactura = generarSiguienteNumeroCompra(idCompraJS);
+    document.getElementById('ID_Compra').value = siguienteNumeroFactura;
+
+    document.getElementById("BtnImprimir").disabled = false;
+
+}
+
+function generarSiguienteNumeroCompra(numeroCompraActual) {
+    const numero = parseInt(numeroCompraActual.split('-')[1]);
+    const siguienteNumero = numero + 1;
+    return `C-${siguienteNumero.toString().padStart(5, '0')}`;
+}
 
 // Función para imprimir y generar la nota de venta
 function generarNotaVenta() {

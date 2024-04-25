@@ -21,5 +21,9 @@ public class CompraControllers {
         compraDao.registrar(compra);
     }
 
+    @RequestMapping(value = "api/facturas/idCompra", method = RequestMethod.GET)
+    public String obtenerUltimoNumeroFactura(){
+        return compraDao.ObtenerNumeroCompraEspecifico();
+    }
 
 }

@@ -467,7 +467,7 @@ async function generarNumeroFactura() {
   
   const numFacturaJS = await request.text();
 
-  if (numFacturaJS === 0) {
+  if (numFacturaJS == "0") {
     document.getElementById('Num_venta').value = "V-00001";
     return;
   }
@@ -487,7 +487,6 @@ function generarSiguienteNumeroFactura(numeroFacturaActual) {
 
 // Función para imprimir y generar la factura
 function generarFactura() {
-
   const facturaNumero = document.getElementById('Num_venta').value;
   const fecha = document.getElementById('Fecha').value;
   const datosCliente = obtenerDatosCliente();

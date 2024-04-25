@@ -6,6 +6,8 @@ public interface CompraDao {
 
     void registrar(compra compra);
 
+    String ObtenerNumeroCompraEspecifico();
+
 } 
     
 
